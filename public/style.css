@@ -1,21 +1,26 @@
 #map {
   padding: 20px;
   width: 40%;
-  height: 90%;
+  height: 94%;
   float: right;
 }
 
 #formulaire{
 width: 50%;
+height: 28%;
 float: left;
 padding: 20px;
 }
 
 #result{
   width: 50%;
-  height: 500px;
+  height: 50%;
   overflow-y: scroll;
   scrollbar-width: large;
   border: 2px solid;
   padding:20px;
+}
+
+#bout{
+  height: 5%%;
 }

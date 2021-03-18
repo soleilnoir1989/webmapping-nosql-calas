@@ -43,11 +43,12 @@ app.get('/geo-search-results', function(req, res){
  var latitude = parseFloat(req.query.latitude);
  var longitude = parseFloat(req.query.longitude);
  var radius = parseFloat(req.query.radius);
+ var texte = req.query.texte.toUpperCase();
 
  var filter = {};
  if (Math.abs(longitude) > 0.00001 &&
      Math.abs(latitude) > 0.00001) {
-
+   var filter = {"properties.ins_nom" : {$regex : ".*"+texte+".*", $options : "i"}};
    filter.geometry = { "$geoWithin": { "$center": [ [ longitude, latitude ] , radius ] } };
  }
  // console.log("filter", filter, [ longitude, latitude ]);
@@ -59,7 +60,8 @@ app.get('/geo-search-results', function(req, res){
      results: docs,
      latitude: latitude,
      longitude:longitude,
-     radius:radius
+     radius:radius,
+     texte:texte
    });
  });
 });
@@ -70,12 +72,12 @@ app.get('/geo-search-results-json', function(req, res){
  var latitude = parseFloat(req.query.latitude);
  var longitude = parseFloat(req.query.longitude);
  var radius = parseFloat(req.query.radius);
+ var texte = req.query.texte.toUpperCase();
 
 
- var filter = {};
  if (Math.abs(longitude) > 0.00001 &&
      Math.abs(latitude) > 0.00001) {
-
+   var filter = {"properties.ins_nom" : {$regex : ".*"+texte+".*", $options : "i"}};
    filter.geometry = { "$geoWithin": { "$center": [ [ longitude, latitude ] , radius ] } };
  }
  // console.log("filter", filter, [ longitude, latitude ]);

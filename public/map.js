@@ -19,11 +19,25 @@ var map = new ol.Map({
  })
 });
 
-var mousePosition = new ol.control.MousePosition({
-        coordinateFormat: ol.coordinate.createStringXY(2),
-        projection: 'EPSG:4326',
-        target: document.getElementById('myposition'),
-        undefinedHTML: '&nbsp;'
-      });
 
-map.addControl(mousePosition);
+document.getElementById('bout').addEventListener('click', event => {
+  var formulaire = document.getElementById('formulaire');
+  formulaire.longitude.value = ol.proj.toLonLat(map.getView().getCenter())[0];
+  formulaire.latitude.value = ol.proj.toLonLat(map.getView().getCenter())[1];
+});
+
+
+
+document.getElementById('che').addEventListener('click',event => {
+  if (document.getElementById('che').checked==true){
+    map.on('pointermove', function (e) {
+        if (e.dragging) {
+            formulaire.longitude.value = ol.proj.toLonLat(map.getView().getCenter())[0];
+            formulaire.latitude.value = ol.proj.toLonLat(map.getView().getCenter())[1];
+        }
+    });
+  }else{
+    formulaire.longitude.value =2.34;
+    formulaire.latitude.value= 48.85;
+  }
+});

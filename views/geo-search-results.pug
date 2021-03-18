@@ -6,21 +6,28 @@ html
        script(type="text/javascript", src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js")
    body
      div(id='map')
-     div(id='myposition')
+     div(name="position" id='myposition')
      form(id='formulaire' action = "/geo-search-results", method = "GET")
         div
+           label(for = "titre") Recherche texte:
+           input(id='texte' name = "texte" value = texte)
+        br
+        div
            label(for = "say") Longitude:
-           input(name = "longitude" value = longitude)
+           input(id='longitude' name = "longitude" value = longitude)
         br
         div
            label(for = "say") Latitude:
-           input(name = "latitude" value = latitude)
+           input(id = "latitude" name = "latitude" value = latitude)
         br
         div
            label(for = "to") Radius:
            input(name = "radius" value = radius)
         br
         button(type = "submit") Send
+        button(type = "button" id="bout") Update coordinates and radius
+        input(id='che' type='checkbox' checked=false)
+
      h1 Résultats
      div(id='result')
        each result in results
