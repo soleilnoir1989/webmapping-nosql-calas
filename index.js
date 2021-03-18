@@ -56,7 +56,10 @@ app.get('/geo-search-results', function(req, res){
    console.log("Found "+docs.length+" records");
    // console.dir(docs);
    res.render('geo-search-results', {
-     results: docs
+     results: docs,
+     latitude: latitude,
+     longitude:longitude,
+     radius:radius
    });
  });
 });

@@ -18,3 +18,12 @@ var map = new ol.Map({
    maxZoom: 20,
  })
 });
+
+var mousePosition = new ol.control.MousePosition({
+        coordinateFormat: ol.coordinate.createStringXY(2),
+        projection: 'EPSG:4326',
+        target: document.getElementById('myposition'),
+        undefinedHTML: '&nbsp;'
+      });
+
+map.addControl(mousePosition);
